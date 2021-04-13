@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Temporizador</title>
+        <link rel="stylesheet" href="styles/main.css" />
+    </head>
+    <body>
+        <main class="container">
+            <section class="section-form--container">
+                <h3>Asignar tiempos</h3>
+                <form class="section-form--form">
+                    <label for="setHours" class="input-form">
+                        <span>Horas</span><br />
+                        <input
+                            type="number"
+                            name="setHours"
+                            id="setHours"
+                            placeholder="Pon la cantidad de horas"
+                            min="0"
+                            max="24"
+                        />
+                    </label>
+                    <label for="setMinutes" class="input-form">
+                        <span>Minutos</span><br />
+                        <input
+                            type="number"
+                            name="setMinutes"
+                            id="setMinutes"
+                            placeholder="Pon la cantidad de minutos"
+                            min="0"
+                            max="60"
+                        />
+                    </label>
+                    <label for="setSeconds" class="input-form">
+                        <span>Segundos</span><br />
+                        <input
+                            type="number"
+                            name="setSeconds"
+                            id="setSeconds"
+                            placeholder="Pon la cantidad de secundos"
+                            min="0"
+                            max="60"
+                        />
+                    </label>
+                </form>
+                <div class="section-timerFor-container">
+                    <button id="study">Estudio</button>
+                    <button id="relax">Descanso</button>
+                </div>
+            </section>
+            <section class="section-timers--container">
+                <section class="section-timer--container">
+                    <div class="section-timer--view">
+                        <span id="study_hours"> 00 </span>
+                        <span id="study_minutes"> 00 </span>
+                        <span id="study_seconds"> 00 </span>
+                    </div>
+                    <div class="section-timer--buttons">
+                        <button id="study_pause">Pause</button>
+                        <button id="study_play">Play</button>
+                        <button id="study_reset">Reset</button>
+                    </div>
+                </section>
+                <section class="section-timer--container">
+                    <div class="section-timer--view">
+                        <span id="relax_hours"> 00 </span>
+                        <span id="relax_minutes"> 00 </span>
+                        <span id="relax_seconds"> 00 </span>
+                    </div>
+                    <div class="section-timer--buttons">
+                        <button id="relax_pause">Pause</button>
+                        <button id="relax_play">Play</button>
+                        <button id="relax_reset">Reset</button>
+                    </div>
+                </section>
+            </section>
+        </main>
+        <footer>
+            <section class="footer-section--copyright">
+                <p>Creado por @geaglts</p>
+                <p>Todos los derechos reservados &copy;</p>
+            </section>
+            <section class="footer-section--social">
+                <a href="#" target="_blank">Instagram</a>
+                <a href="#" target="_blank">Twitter</a>
+            </section>
+        </footer>
+        <script src="js/app.js"></script>
+    </body>
+</html>
