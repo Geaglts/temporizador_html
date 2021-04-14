@@ -8,6 +8,7 @@
 /* Variables */
 :root {
     --shadow: 0 4px 8px hsla(0, 0%, 100%, 0.1);
+    --dark-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     --white: #ececee;
     --light-gray: #747474;
     --dark-gray: #5c5c5c;
@@ -97,7 +98,7 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--light-gray);
+    background-color: var(--white);
 }
 
 .container .section-form--container h3 {
@@ -105,7 +106,7 @@ html {
     font-weight: bold;
     line-height: 1.5rem;
     margin-bottom: 20px;
-    color: var(--white);
+    color: var(--light-blue);
     text-shadow: var(--shadow);
 }
 
@@ -123,22 +124,23 @@ html {
 .section-form--form .input-form span {
     font-size: 1.8rem;
     font-weight: bold;
-    color: var(--white);
+    color: var(--light-blue);
     text-shadow: var(--shadow);
 }
 
 .section-form--form .input-form input {
     margin-top: 5px;
+    font-size: 1.4rem;
     padding: 10px 7px;
     border-radius: 5px;
     width: 100%;
     border: var(--border);
-    box-shadow: var(--shadow);
+    box-shadow: var(--dark-shadow);
     font-weight: bold;
 }
 
 .section-form--form .input-form input::placeholder {
-    color: var(--light-gray);
+    color: #6d8ff3;
 }
 
 .container .section-form--container .section-timerFor-container {
@@ -156,6 +158,9 @@ html {
     height: 35px;
     font-size: 1.4rem;
     font-weight: bold;
+    box-shadow: var(--dark-shadow);
+    background-color: var(--dark-blue);
+    color: var(--white);
 }
 
 /* Timer View */
@@ -168,6 +173,11 @@ html {
     border-radius: 10px;
     overflow: hidden;
     margin: 20px 0;
+}
+
+.container .section-timers--container .timer-title {
+    font-size: 2.6rem;
+    color: var(--white);
 }
 
 .section-timers--container .section-timer--container .section-timer--view {
