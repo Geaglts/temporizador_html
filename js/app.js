@@ -85,7 +85,7 @@ function startTimer(hours, minutes, seconds, key) {
     intervalIds[key] = setInterval(() => {
         if (numberSeconds === 0) {
             if (numberMinutes > 0) {
-                numberSeconds = 60;
+                numberSeconds = 59;
                 numberMinutes -= 1;
                 minutes.textContent = formatTime(numberMinutes);
                 seconds.textContent = formatTime(numberSeconds);

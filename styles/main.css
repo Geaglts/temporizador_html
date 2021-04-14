@@ -3,6 +3,7 @@
     padding: 0%;
     box-sizing: border-box;
     outline: none;
+    font-family: "Poppins", sans-serif;
 }
 
 /* Variables */
@@ -58,6 +59,7 @@ button {
     border-radius: 5px;
     color: var(--light-gray);
     cursor: pointer;
+    letter-spacing: 1px;
 }
 
 button:hover {
@@ -74,7 +76,6 @@ button:active {
 html {
     scroll-behavior: smooth;
     font-size: 62.5%;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Timer Form*/
@@ -136,6 +137,7 @@ html {
     width: 100%;
     border: var(--border);
     box-shadow: var(--dark-shadow);
+    color: var(--light-blue);
     font-weight: bold;
 }
 
