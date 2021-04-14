@@ -107,7 +107,7 @@ function startTimer(hours, minutes, seconds, key) {
                     setTimeout(() => {
                         audio.pause();
                         audio.currentTime = 0;
-                    }, 8000);
+                    }, 4000);
                     stopTimer(key);
                 }
             }
