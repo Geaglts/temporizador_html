@@ -1,7 +1,10 @@
 const STUDY_KEY = "STUDY_KEY";
 const RELAX_KEY = "RELAX_KEY";
 
-//Form inputs
+// Audio
+const audio = document.getElementById("audio");
+
+// Form inputs
 const form_setHours = document.querySelector("#setHours");
 const form_setMinutes = document.querySelector("#setMinutes");
 const form_setSeconds = document.querySelector("#setSeconds");
@@ -85,7 +88,7 @@ function startTimer(hours, minutes, seconds, key) {
     intervalIds[key] = setInterval(() => {
         if (numberSeconds === 0) {
             if (numberMinutes > 0) {
-                numberSeconds = 60;
+                numberSeconds = 59;
                 numberMinutes -= 1;
                 minutes.textContent = formatTime(numberMinutes);
                 seconds.textContent = formatTime(numberSeconds);
@@ -100,8 +103,12 @@ function startTimer(hours, minutes, seconds, key) {
                     hours.textContent = formatTime(numberHours);
                     minutes.textContent = formatTime(numberMinutes);
                     seconds.textContent = formatTime(numberSeconds);
+                    audio.play();
+                    setTimeout(() => {
+                        audio.pause();
+                        audio.currentTime = 0;
+                    }, 8000);
                     stopTimer(key);
-                    alert("Termino un cronometro :D!!");
                 }
             }
         } else {
