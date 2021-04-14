@@ -1,3 +1,6 @@
+const STUDY_KEY = "STUDY_KEY";
+const RELAX_KEY = "RELAX_KEY";
+
 //Form inputs
 const form_setHours = document.querySelector("#setHours");
 const form_setMinutes = document.querySelector("#setMinutes");
@@ -21,8 +24,8 @@ const button_study_pause = document.querySelector("#study_pause");
 const button_study_play = document.querySelector("#study_play");
 const button_study_reset = document.querySelector("#study_reset");
 
-const elemento16 = document.querySelector("#relax_pause");
-const elemento17 = document.querySelector("#relax_play");
+const button_relax_pause = document.querySelector("#relax_pause");
+const button_relax_play = document.querySelector("#relax_play");
 const button_relax_reset = document.querySelector("#relax_reset");
 
 // Format numbers
@@ -71,55 +74,48 @@ function setRelaxText(hours, minutes, seconds) {
     text_relax_seconds.textContent = formatTime(seconds);
 }
 
-let studyIntervalId = null;
+let intervalIds = {};
 
 // Timer
-function startTimer(hours, minutes, seconds) {
+function startTimer(hours, minutes, seconds, key) {
     let numberHours = parseStringToNumber(hours);
     let numberMinutes = parseStringToNumber(minutes);
     let numberSeconds = parseStringToNumber(seconds);
 
-    let count = 1;
-
-    studyIntervalId = setInterval(() => {
-        if (count === 60) {
-            if (numberSeconds === 0) {
-                if (numberMinutes > 0) {
-                    numberSeconds = 60;
-                    numberMinutes -= 1;
+    intervalIds[key] = setInterval(() => {
+        if (numberSeconds === 0) {
+            if (numberMinutes > 0) {
+                numberSeconds = 60;
+                numberMinutes -= 1;
+                minutes.textContent = formatTime(numberMinutes);
+                seconds.textContent = formatTime(numberSeconds);
+            } else {
+                if (numberHours > 0) {
+                    numberMinutes = 60;
+                    numberHours -= 1;
+                    hours.textContent = formatTime(numberHours);
                     minutes.textContent = formatTime(numberMinutes);
                     seconds.textContent = formatTime(numberSeconds);
                 } else {
-                    if (numberHours > 0) {
-                        numberMinutes = 60;
-                        numberHours -= 1;
-                        hours.textContent = formatTime(numberHours);
-                        minutes.textContent = formatTime(numberMinutes);
-                        seconds.textContent = formatTime(numberSeconds);
-                    } else {
-                        count = 1;
-                        hours.textContent = formatTime(numberHours);
-                        minutes.textContent = formatTime(numberMinutes);
-                        seconds.textContent = formatTime(numberSeconds);
-                        stopTimer();
-                        alert("Termino un cronometro :D!!");
-                    }
+                    hours.textContent = formatTime(numberHours);
+                    minutes.textContent = formatTime(numberMinutes);
+                    seconds.textContent = formatTime(numberSeconds);
+                    stopTimer(key);
+                    alert("Termino un cronometro :D!!");
                 }
-            } else {
-                numberSeconds -= 1;
-                hours.textContent = formatTime(numberHours);
-                minutes.textContent = formatTime(numberMinutes);
-                seconds.textContent = formatTime(numberSeconds);
             }
-            count = 1;
+        } else {
+            numberSeconds -= 1;
+            hours.textContent = formatTime(numberHours);
+            minutes.textContent = formatTime(numberMinutes);
+            seconds.textContent = formatTime(numberSeconds);
         }
-        count++;
-    }, 1);
+    }, 1000);
 }
 
 // Timer
-function stopTimer() {
-    clearInterval(studyIntervalId);
+function stopTimer(key) {
+    clearInterval(intervalIds[key]);
 }
 
 // events
@@ -141,13 +137,14 @@ button_relax.addEventListener("click", () => {
 });
 
 button_study_reset.addEventListener("click", () => {
-    stopTimer();
+    stopTimer(STUDY_KEY);
     text_study_hours.textContent = "00";
     text_study_minutes.textContent = "00";
     text_study_seconds.textContent = "00";
 });
 
 button_relax_reset.addEventListener("click", () => {
+    stopTimer(RELAX_KEY);
     text_relax_hours.textContent = "00";
     text_relax_minutes.textContent = "00";
     text_relax_seconds.textContent = "00";
@@ -158,9 +155,21 @@ button_study_play.addEventListener("click", () => {
     const hours = text_study_hours;
     const minutes = text_study_minutes;
     const seconds = text_study_seconds;
-    startTimer(hours, minutes, seconds);
+    startTimer(hours, minutes, seconds, STUDY_KEY);
 });
 
 button_study_pause.addEventListener("click", () => {
-    stopTimer();
+    stopTimer(STUDY_KEY);
+});
+
+// Relax timer
+button_relax_play.addEventListener("click", () => {
+    const hours = text_relax_hours;
+    const minutes = text_relax_minutes;
+    const seconds = text_relax_seconds;
+    startTimer(hours, minutes, seconds, RELAX_KEY);
+});
+
+button_relax_pause.addEventListener("click", () => {
+    stopTimer(RELAX_KEY);
 });
